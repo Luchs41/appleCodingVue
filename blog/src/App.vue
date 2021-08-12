@@ -1,15 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Vuelog</span>
+  </div>
+</nav>
+<div class="container mt-4">
+  <h5>블로그라니께요</h5>
+</div>
+<List :블로그글="블로그글" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import List from './components/List.vue'
+import blog from './assets/blog.js'
+
 
 export default {
   name: 'App',
+  data(){
+    return {
+      블로그글 : blog,
+    }
+  },
   components: {
-    HelloWorld
+    List : List,
   }
 }
 </script>
@@ -21,6 +35,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
