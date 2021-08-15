@@ -17,6 +17,7 @@
   <button @click="sortBack">되돌리기</button>
   <Card @openModal="모달창열렸니 = true; 누른거 = $event" :원룸들="원룸들" />
 
+
 </template>
 
 <script>
