@@ -9,7 +9,7 @@
 		<img src="./assets/logo.png" class="logo">
 	</div>
 
-	<Container :posts="posts" />
+	<Container :posts="posts" :step="step" />
 	<button @click="more">
 		더보기
 	</button>
@@ -33,6 +33,7 @@ export default {
     return {
       posts : posting,
       moreClicked : 0,
+      step : 0,
     }
   },
   components: {
