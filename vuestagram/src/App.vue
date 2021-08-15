@@ -33,7 +33,7 @@ export default {
     return {
       posts : posting,
       moreClicked : 0,
-      step : 0,
+      step : 1,
     }
   },
   components: {
