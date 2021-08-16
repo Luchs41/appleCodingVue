@@ -36,5 +36,7 @@ module.exports = {
       }],
       "vue/no-multiple-template-root": "off",
       "vue/require-default-prop": "off",
+      "vue/attribute-hyphenation": "off",
+      "vue/require-explicit-emits": "off",
   }
 };

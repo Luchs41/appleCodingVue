@@ -4,19 +4,24 @@
 			<li>Cancel</li>
 		</ul>
 		<ul class="header-button-right">
-			<li>Next</li>
+			<li v-if="step==1" @click="step++">
+				Next
+			</li>
+			<li v-if="step==2" @click="publish">
+				발행
+			</li>
 		</ul>
 		<img src="./assets/logo.png" class="logo">
 	</div>
 
-	<Container :posts="posts" :step="step" />
+	<Container @write="작성한글 = $event" :posts="posts" :step="step" :이미지="이미지" />
 	<button @click="more">
 		더보기
 	</button>
 
 	<div class="footer">
 		<ul class="footer-button-plus">
-			<input type="file" id="file" class="inputfile">
+			<input @change="upload" accept="image/*" type="file" id="file" class="inputfile">
 			<label for="file" class="input-plus">+</label>
 		</ul>
 	</div>
@@ -33,21 +38,42 @@ export default {
     return {
       posts : posting,
       moreClicked : 0,
-      step : 1,
+      step : 0,
+      이미지 : '',
+			작성한글 : '',
     }
   },
   components: {
     Container : Container,
   },
   methods : {
+    publish(){
+      var 내게시물 = {
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.이미지,
+				likes: 36,
+				date: "May 15",
+				liked: false,
+				content: this.작성한글,
+				filter: "perpetua"
+      };
+      this.posts.unshift(내게시물);
+      this.step = 0;
+    },
     more() {
       axios.get(`https://codingapple1.github.io/vue/more${this.moreClicked}.json`)
       .then((결과)=>{
         this.posts.push(결과.data);
         this.moreClicked++;
       })
-      
-    }
+    },
+    upload(e){
+      let 파일 = e.target.files;
+      this.이미지 = URL.createObjectURL(파일[0]);
+      console.log(this.이미지);
+      this.step++;
+    },
   },
 };
 </script>

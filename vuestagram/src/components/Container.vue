@@ -5,7 +5,7 @@
 
 	<!-- 필터선택페이지 -->
 	<div v-if="step==1">
-		<div class="upload-image" />
+		<div class="upload-image" :style="`background-image:url(${이미지})`" />
 		<div class="filters">
 			<div class="filter-1" />
 			<div class="filter-1" />
@@ -17,9 +17,9 @@
 	
 	<!-- 글작성페이지 -->
 	<div v-if="step==2">
-		<div class="upload-image" />
+		<div class="upload-image" :style="{backgroundImage : `url(${이미지})`}" />
 		<div class="write">
-			<textarea class="write-box">write!</textarea>
+			<textarea class="write-box" @input="$emit('write', $event.target.value)">write!</textarea>
 		</div>
 	</div>
 </template>
@@ -34,6 +34,7 @@ export default {
 	props:{
 		posts : Array,
 		step : Number,
+		이미지 : String,
 	}
 };
 </script>
