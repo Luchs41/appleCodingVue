@@ -7,11 +7,9 @@
 	<div v-if="step==1">
 		<div class="upload-image" :style="`background-image:url(${이미지})`" />
 		<div class="filters">
-			<div class="filter-1" />
-			<div class="filter-1" />
-			<div class="filter-1" />
-			<div class="filter-1" />
-			<div class="filter-1" />
+			<FilterBox :filterName="filterName[i]" :이미지="이미지" v-for="(a, i) in filterName" :key="i">
+				{{ filterName[i] }}
+			</FilterBox>
 		</div>
 	</div>
 	
@@ -26,10 +24,18 @@
 
 <script>
 import Post from './Post.vue'
+import FilterBox from './FilterBox.vue'
+import filterName from '../assets/filter.js'
 export default {
 	name : 'Container',
+	data(){
+		return {
+			filterName : filterName,
+		}
+	},
   components:{
     Post : Post,
+		FilterBox : FilterBox,
   },
 	props:{
 		posts : Array,
