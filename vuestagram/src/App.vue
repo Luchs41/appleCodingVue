@@ -14,7 +14,9 @@
 		<img src="./assets/logo.png" class="logo">
 	</div>
 
-	<Container @write="작성한글 = $event" :posts="posts" :step="step" :이미지="이미지" />
+	<h4>안녕 {{ $store.state.name }}</h4>
+	<button @click="$store.state.name = '박'">버튼</button>
+	<Container @write="작성한글 = $event" :posts="posts" :step="step" :이미지="이미지" :selectedFilter="selectedFilter" />
 	<button @click="more">
 		더보기
 	</button>
@@ -41,7 +43,14 @@ export default {
       step : 0,
       이미지 : '',
 			작성한글 : '',
+      selectedFilter : '',
     }
+  },
+  mounted(){
+    this.emitter.on('selectedFilter', (a)=>{
+      this.selectedFilter = a;
+      //console.log('이거요' + this.selectedFilter);
+    });
   },
   components: {
     Container : Container,
@@ -56,7 +65,7 @@ export default {
 				date: "May 15",
 				liked: false,
 				content: this.작성한글,
-				filter: "perpetua"
+				filter: this.selectedFilter,
       };
       this.posts.unshift(내게시물);
       this.step = 0;

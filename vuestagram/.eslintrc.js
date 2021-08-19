@@ -38,5 +38,6 @@ module.exports = {
       "vue/require-default-prop": "off",
       "vue/attribute-hyphenation": "off",
       "vue/require-explicit-emits": "off",
+      "vue/singleline-html-element-content-newline": "off",
   }
 };
