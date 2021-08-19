@@ -14,12 +14,18 @@
 		<img src="./assets/logo.png" class="logo">
 	</div>
 
-	<h4>안녕 {{ $store.state.name }}</h4>
-	<button @click="$store.state.name = '박'">버튼</button>
+	<h4>안녕 {{ $store.state.name }} 너는 {{ $store.state.age }} 살이구나</h4>
+	<button @click="$store.commit('이름변경')">이름변경뿅</button> &nbsp;
+	<button @click="$store.commit('나이증가')">나이증가뿅</button>
+
+	<p>{{ $store.state.more }}</p>
+	<button @click="$store.dispatch('getData')">Vuex 더보기버튼</button>
+
+	<p>{{ name }} {{ age }} {{ likes }}</p>
 	<Container @write="작성한글 = $event" :posts="posts" :step="step" :이미지="이미지" :selectedFilter="selectedFilter" />
-	<button @click="more">
-		더보기
-	</button>
+	<button @click="more">더보기</button>
+
+
 
 	<div class="footer">
 		<ul class="footer-button-plus">
@@ -33,6 +39,7 @@
 import Container from './components/Container.vue'
 import posting from './assets/Posting.js'
 import axios from 'axios'
+import {mapState} from 'vuex'
 
 export default {
   name: "App",
@@ -44,6 +51,7 @@ export default {
       이미지 : '',
 			작성한글 : '',
       selectedFilter : '',
+      카운터 : 0,
     }
   },
   mounted(){
@@ -55,7 +63,14 @@ export default {
   components: {
     Container : Container,
   },
+  computed : {
+    name(){
+      return this.$store.state.name
+    },
+    ...mapState(['name', 'age', 'likes']),
+  }, 
   methods : {
+
     publish(){
       var 내게시물 = {
         name: "Kim Hyun",
