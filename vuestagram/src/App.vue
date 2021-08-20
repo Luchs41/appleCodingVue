@@ -14,16 +14,15 @@
 		<img src="./assets/logo.png" class="logo">
 	</div>
 
-	<h4>안녕 {{ $store.state.name }} 너는 {{ $store.state.age }} 살이구나</h4>
+	<!-- <h4>안녕 {{ $store.state.name }} 너는 {{ $store.state.age }} 살이구나</h4>
 	<button @click="$store.commit('이름변경')">이름변경뿅</button> &nbsp;
 	<button @click="$store.commit('나이증가')">나이증가뿅</button>
 
 	<p>{{ $store.state.more }}</p>
 	<button @click="$store.dispatch('getData')">Vuex 더보기버튼</button>
 
-	<p>{{ name }} {{ age }} {{ likes }}</p>
+	<p>{{ name }} {{ age }} {{ likes }}</p> -->
 	<Container @write="작성한글 = $event" :posts="posts" :step="step" :이미지="이미지" :selectedFilter="selectedFilter" />
-	<button @click="more">더보기</button>
 
 
 
@@ -47,7 +46,7 @@ export default {
     return {
       posts : posting,
       moreClicked : 0,
-      step : 0,
+      step : 3,
       이미지 : '',
 			작성한글 : '',
       selectedFilter : '',
